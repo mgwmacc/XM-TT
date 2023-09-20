@@ -9,6 +9,7 @@
  - Emails are not sent to the Email provided. Instead 'Mailer' is set to "log" so
 emails (their body, subject, additional data) are put to Laravel log file (/storage/logs/laravel.log).
 In such a way we emulate mailing functionality without actual email sending. (Setting up proper mailing driver will change the behaviour).
+ - Basic tests are in /tests/Feature
 
 ### Running:
  - No Database needed
