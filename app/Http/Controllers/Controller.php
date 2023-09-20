@@ -19,16 +19,16 @@ class Controller extends BaseController
     use AuthorizesRequests, ValidatesRequests;
 
     /**
-     * @var readonly|array
+     * @var array|NasdaqListingsService
      */
-    private readonly array $availableCompanySymbols;
+    private readonly NasdaqListingsService $nasdaqListingsService;
 
     /**
      * @param NasdaqListingsService $nasdaqListingsService
      */
     public function __construct(NasdaqListingsService $nasdaqListingsService)
     {
-        $this->availableCompanySymbols = $nasdaqListingsService->getAvailableCompanySymbols();
+        $this->nasdaqListingsService = $nasdaqListingsService;
     }
 
     /**
@@ -37,7 +37,7 @@ class Controller extends BaseController
     public function index()
     {
         return view('pages.index', [
-            'availableCompanySymbols' => json_encode($this->availableCompanySymbols)
+            'availableCompanySymbols' => json_encode($this->nasdaqListingsService->getAvailableCompanySymbols())
         ]);
     }
 
@@ -83,7 +83,7 @@ class Controller extends BaseController
         }
 
         return view('pages.index', [
-            'availableCompanySymbols' => json_encode($this->availableCompanySymbols),
+            'availableCompanySymbols' => json_encode($this->nasdaqListingsService->getAvailableCompanySymbols()),
             'historicalData'          => $historicalData,
             'chartDataOpenPrices'     => json_encode($chartDataOpenPrices),
             'chartDataClosePrices'    => json_encode($chartDataClosePrices),
