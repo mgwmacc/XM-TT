@@ -16,5 +16,7 @@ In such a way we emulate mailing functionality without actual email sending. (Se
 ### Running:
  - No Database needed.
  - run 'composer install' command to get all the app dependencies.
+ - make .env file by copying .env.example
+ - run 'php artisan key:generate' 
  - run 'php artisan serve' command and the app should be available on http://127.0.0.1:8000.
 
